@@ -1,7 +1,6 @@
-package com.fx.javafxdemo;
+package com.fx.tetris;
 
-import com.fx.javafxdemo.graphics.AbsGraphics;
-import com.fx.javafxdemo.graphics.Graphics;
+import com.fx.tetris.graphics.Graphics;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -13,15 +12,23 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class GameScene {
     Refish refish = new Refish();
     KeyProcess keyProcess = new KeyProcess();
-    public Graphics graphics = new Graphics();
+    Graphics graphics = new Graphics();
+
+    public Graphics getGraphics() {
+        return graphics;
+    }
 
     public void init(Stage stage) {
+        // init 跳舞视频
+       Director.getInstance().getDance().init();
+
         // 生成线
         drawGrid();
 
@@ -70,7 +77,6 @@ public class GameScene {
         private long lastUpdate = 0;
         //用于定时记录
         private long secondTime = 0;
-
 
         @Override
         public void handle(long now) {
@@ -125,7 +131,10 @@ public class GameScene {
             KeyCode code = keyEvent.getCode();
             if (code == KeyCode.SPACE){
                 // TODO： 此处要添加涂层 提示暂停
-                Director.running = !Director.running;
+                // 此处若播放视频  则不可改变游戏暂停状态
+                if (!Director.isPlay){
+                    Director.running = !Director.running;
+                }
             }
 
             if (Director.running){

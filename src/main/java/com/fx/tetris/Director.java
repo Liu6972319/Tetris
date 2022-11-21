@@ -1,13 +1,10 @@
-package com.fx.javafxdemo;
+package com.fx.tetris;
 
-import com.fx.javafxdemo.utils.FileUtils;
-import javafx.collections.ObservableList;
+import com.fx.tetris.utils.FileUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -51,7 +48,17 @@ public class Director {
 
     public GameScene gameScene = new GameScene();
 
+    public GameScene getGameScene(){
+        return gameScene;
+    }
+
+    Dance dance = new Dance();
+    public Dance getDance(){
+        return dance;
+    }
+
     public static boolean running;
+    public static boolean isPlay;
 
     /**
      * 初始化首页
@@ -64,7 +71,7 @@ public class Director {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("俄罗斯方块");
-        stage.getIcons().add(new Image(FileUtils.getImage("/image/2022-11-15_21-45.png")));
+        stage.getIcons().add(new Image(FileUtils.getStream("/image/2022-11-15_21-45.png")));
         Node index = scene.lookup("#index");
         if (index instanceof BorderPane){
             ((BorderPane) index).setPrefHeight(Director.HEIGHT);

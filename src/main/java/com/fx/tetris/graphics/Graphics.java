@@ -1,6 +1,6 @@
-package com.fx.javafxdemo.graphics;
+package com.fx.tetris.graphics;
 
-import com.fx.javafxdemo.Director;
+import com.fx.tetris.Director;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import java.util.Arrays;

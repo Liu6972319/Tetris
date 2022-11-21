@@ -1,4 +1,4 @@
-package com.fx.javafxdemo;
+package com.fx.tetris;
 
 import javafx.application.Application;
 import javafx.stage.Stage;

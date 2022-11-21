@@ -1,20 +1,21 @@
-package com.fx.javafxdemo.graphics;
+package com.fx.tetris.graphics;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 /**
- *  a
- * bcd
+ * a
+ * b
+ * cd
  */
-public class T extends AbsGraphics {
+public class L extends AbsGraphics {
 
     @Override
     public void createGraphics() {
         a = new Rectangle(WIDTH / 2 - SIZE, 0, SIZE, SIZE);
-        b = new Rectangle(WIDTH / 2 - SIZE * 2, SIZE, SIZE, SIZE);
-        c = new Rectangle(WIDTH / 2 - SIZE, SIZE, SIZE, SIZE);
-        d = new Rectangle(WIDTH / 2, SIZE, SIZE, SIZE);
+        b = new Rectangle(WIDTH / 2 - SIZE, SIZE, SIZE, SIZE);
+        c = new Rectangle(WIDTH / 2 - SIZE, SIZE * 2, SIZE, SIZE);
+        d = new Rectangle(WIDTH / 2, SIZE * 2, SIZE, SIZE);
     }
 
     @Override
@@ -24,17 +25,16 @@ public class T extends AbsGraphics {
 
     @Override
     protected double getRY() {
-        return c.getY();
+        return b.getY();
     }
 
     @Override
     protected double getRX() {
-        return c.getX();
+        return b.getX();
     }
 
     @Override
     public Color setColor() {
-        return Color.RED;
-
+        return Color.GREEN;
     }
 }

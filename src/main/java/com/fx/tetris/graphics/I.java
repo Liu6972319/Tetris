@@ -1,6 +1,5 @@
-package com.fx.javafxdemo.graphics;
+package com.fx.tetris.graphics;
 
-import com.fx.javafxdemo.Director;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 

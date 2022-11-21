@@ -1,6 +1,6 @@
-package com.fx.javafxdemo.graphics;
+package com.fx.tetris.graphics;
 
-import com.fx.javafxdemo.Director;
+import com.fx.tetris.Director;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -19,9 +19,9 @@ import java.math.RoundingMode;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static com.fx.javafxdemo.Director.MOVE;
-import static com.fx.javafxdemo.Director.HEIGHT;
-import static com.fx.javafxdemo.Director.MESH;
+import static com.fx.tetris.Director.MOVE;
+import static com.fx.tetris.Director.HEIGHT;
+import static com.fx.tetris.Director.MESH;
 
 public abstract class AbsGraphics {
     public double WIDTH = Director.WIDTH;
@@ -174,7 +174,7 @@ public abstract class AbsGraphics {
                 if (score instanceof Label) {
                     ((Label) score).setText("0");
                 }
-                Director.getInstance().gameScene.clear();
+                Director.getInstance().getGameScene().clear();
             });
 
             Director.getInstance().getGame().getChildren().add(game_over);
@@ -204,29 +204,22 @@ public abstract class AbsGraphics {
             isRemove();
 
             Node node = Director.getInstance().getStage().getScene().lookup("#score");
+
+            //添加图形
+            Pane game = Director.getInstance().getGame();
+            game.getChildren().addAll(Director.getInstance().getGameScene().getGraphics().getGraphics());
+
+
             // 判断分数  小人跳舞
             if (node instanceof Label) {
                 String text = ((Label) node).getText();
                 int i = Integer.parseInt(text);
                 if (Director.LEVE * Director.LEVE_STEP <= i) {
                     Director.LEVE = Director.LEVE + 1;
-                    try {
-                        Director.running = false;
-                        System.out.println("小人跳舞");
-                        System.out.println("播放音乐");
-                        Thread.sleep(3000);
-                        System.out.println("小人退场");
-                        System.out.println("音乐停止");
-                        Director.running = true;
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
+
+                    Director.getInstance().getDance().start();
                 }
             }
-
-            //添加图形
-            Pane game = Director.getInstance().getGame();
-            game.getChildren().addAll(Director.getInstance().gameScene.graphics.getGraphics());
 
         }
 
